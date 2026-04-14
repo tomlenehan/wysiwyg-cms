@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WYSIWYG Website Builder</title>
+    <link rel="stylesheet" href="/static/editor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="logo">
+                <i class="fas fa-layer-group"></i>
+                <span>WYSIWYG Builder</span>
+            </div>
+            <div class="actions">
+                <button id="help-btn" class="btn btn-secondary" title="Keyboard Shortcuts (?)" style="font-weight: 700;">?</button>
+                <button id="theme-toggle" class="btn btn-secondary" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="new-project" class="btn btn-secondary">
+                    <i class="fas fa-plus"></i> New
+                </button>
+                <button id="save-project" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save
+                </button>
+                <button id="export-project" class="btn btn-success">
+                    <i class="fas fa-download"></i> Export
+                </button>
+                <button id="preview-mode" class="btn btn-info">
+                    <i class="fas fa-eye"></i> Preview
+                </button>
+            </div>
+        </header>
+
+        <div class="main-container">
+            <!-- Left Sidebar - Components -->
+            <aside class="sidebar sidebar-left">
+                <div class="sidebar-tabs">
+                    <button class="tab-btn active" data-tab="components"><i class="fas fa-cubes"></i> Components</button>
+                    <button class="tab-btn" data-tab="templates"><i class="fas fa-layer-group"></i> Templates</button>
+                    <button class="tab-btn" data-tab="tree"><i class="fas fa-sitemap"></i> Tree</button>
+                </div>
+                
+                <div class="tab-content active" id="tab-components">
+                    <div class="component-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="component-search-input" placeholder="Search components...">
+                    </div>
+                    <div class="component-list">
+                        <!-- Layout -->
+                        <div class="component-category">Layout</div>
+                        <div class="component-item" data-type="container" draggable="true">
+                            <i class="fas fa-square"></i>
+                            <span>Container</span>
+                        </div>
+                        <div class="component-item" data-type="grid" draggable="true">
+                            <i class="fas fa-th"></i>
+                            <span>Grid</span>
+                        </div>
+                        <div class="component-item" data-type="card" draggable="true">
+                            <i class="fas fa-id-card"></i>
+                            <span>Card</span>
+                        </div>
+                        <div class="component-item" data-type="spacer" draggable="true">
+                            <i class="fas fa-arrows-alt-v"></i>
+                            <span>Spacer</span>
+                        </div>
+                        <div class="component-item" data-type="divider" draggable="true">
+                            <i class="fas fa-minus"></i>
+                            <span>Divider</span>
+                        </div>
+                        
+                        <!-- Content -->
+                        <div class="component-category">Content</div>
+                        <div class="component-item" data-type="heading" draggable="true">
+                            <i class="fas fa-heading"></i>
+                            <span>Heading</span>
+                        </div>
+                        <div class="component-item" data-type="text" draggable="true">
+                            <i class="fas fa-font"></i>
+                            <span>Text</span>
+                        </div>
+                        <div class="component-item" data-type="image" draggable="true">
+                            <i class="fas fa-image"></i>
+                            <span>Image</span>
+                        </div>
+                        <div class="component-item" data-type="button" draggable="true">
+                            <i class="fas fa-hand-pointer"></i>
+                            <span>Button</span>
+                        </div>
+                        <div class="component-item" data-type="icon" draggable="true">
+                            <i class="fas fa-icons"></i>
+                            <span>Icon</span>
+                        </div>
+                        <div class="component-item" data-type="badge" draggable="true">
+                            <i class="fas fa-tag"></i>
+                            <span>Badge</span>
+                        </div>
+                        
+                        <!-- Sections -->
+                        <div class="component-category">Sections</div>
+                        <div class="component-item" data-type="navbar" draggable="true">
+                            <i class="fas fa-bars"></i>
+                            <span>Navbar</span>
+                        </div>
+                        <div class="component-item" data-type="hero" draggable="true">
+                            <i class="fas fa-star"></i>
+                            <span>Hero</span>
+                        </div>
+                        
+                        <!-- Interactive -->
+                        <div class="component-category">Interactive</div>
+                        <div class="component-item" data-type="carousel" draggable="true">
+                            <i class="fas fa-images"></i>
+                            <span>Carousel</span>
+                        </div>
+                        <div class="component-item" data-type="tabs" draggable="true">
+                            <i class="fas fa-folder"></i>
+                            <span>Tabs</span>
+                        </div>
+                        <div class="component-item" data-type="accordion" draggable="true">
+                            <i class="fas fa-list-alt"></i>
+                            <span>Accordion</span>
+                        </div>
+                        <div class="component-item" data-type="form" draggable="true">
+                            <i class="fas fa-envelope"></i>
+                            <span>Form</span>
+                        </div>
+                        
+                        <!-- Media -->
+                        <div class="component-category">Media</div>
+                        <div class="component-item" data-type="video" draggable="true">
+                            <i class="fas fa-video"></i>
+                            <span>Video</span>
+                        </div>
+                        <div class="component-item" data-type="map" draggable="true">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Map</span>
+                        </div>
+                        <div class="component-item" data-type="social" draggable="true">
+                            <i class="fas fa-share-alt"></i>
+                            <span>Social</span>
+                        </div>
+                        
+                        <!-- Marketing -->
+                        <div class="component-category">Marketing</div>
+                        <div class="component-item" data-type="testimonial" draggable="true">
+                            <i class="fas fa-quote-left"></i>
+                            <span>Testimonial</span>
+                        </div>
+                        <div class="component-item" data-type="pricing" draggable="true">
+                            <i class="fas fa-tags"></i>
+                            <span>Pricing</span>
+                        </div>
+                        <div class="component-item" data-type="progress" draggable="true">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Progress</span>
+                        </div>
+                        
+                        <!-- New Components -->
+                        <div class="component-category">Advanced</div>
+                        <div class="component-item" data-type="timeline" draggable="true">
+                            <i class="fas fa-history"></i>
+                            <span>Timeline</span>
+                        </div>
+                        <div class="component-item" data-type="stats" draggable="true">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Stats</span>
+                        </div>
+                        <div class="component-item" data-type="team" draggable="true">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Team Member</span>
+                        </div>
+                        <div class="component-item" data-type="cta" draggable="true">
+                            <i class="fas fa-bullhorn"></i>
+                            <span>Call to Action</span>
+                        </div>
+                        <div class="component-item" data-type="footer" draggable="true">
+                            <i class="fas fa-shoe-prints"></i>
+                            <span>Footer</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="tab-templates">
+                    <div class="templates-list">
+                        <div class="template-item" data-template="landing">
+                            <div class="template-preview landing-preview"></div>
+                            <span>Landing Page</span>
+                        </div>
+                        <div class="template-item" data-template="portfolio">
+                            <div class="template-preview portfolio-preview"></div>
+                            <span>Portfolio</span>
+                        </div>
+                        <div class="template-item" data-template="blog">
+                            <div class="template-preview blog-preview"></div>
+                            <span>Blog Post</span>
+                        </div>
+                        <div class="template-item" data-template="contact">
+                            <div class="template-preview contact-preview"></div>
+                            <span>Contact Page</span>
+                        </div>
+                        <div class="template-item" data-template="saas">
+                            <div class="template-preview saas-preview"></div>
+                            <span>SaaS Landing</span>
+                        </div>
+                        <div class="template-item" data-template="restaurant">
+                            <div class="template-preview restaurant-preview"></div>
+                            <span>Restaurant</span>
+                        </div>
+                        <div class="template-item" data-template="agency">
+                            <div class="template-preview agency-preview"></div>
+                            <span>Agency</span>
+                        </div>
+                        <div class="template-item" data-template="startup">
+                            <div class="template-preview startup-preview"></div>
+                            <span>Startup</span>
+                        </div>
+                        <div class="template-item" data-template="corporate">
+                            <div class="template-preview corporate-preview"></div>
+                            <span>Corporate</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="tab-tree">
+                    <div id="component-tree" class="component-tree">
+                        <div class="empty-tree">
+                            <i class="fas fa-tree"></i>
+                            <p>No components yet</p>
+                            <small>Drag components from the Components tab to get started</small>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Center - Canvas -->
+            <main class="canvas-area">
+                <div class="canvas-header">
+                    <div class="device-toggle">
+                        <button class="device-btn active" data-device="desktop">
+                            <i class="fas fa-desktop"></i>
+                        </button>
+                        <button class="device-btn" data-device="tablet">
+                            <i class="fas fa-tablet-alt"></i>
+                        </button>
+                        <button class="device-btn" data-device="mobile">
+                            <i class="fas fa-mobile-alt"></i>
+                        </button>
+                    </div>
+                    <div class="page-info">
+                        <span id="page-name">Home Page</span>
+                    </div>
+                </div>
+                <div class="canvas-wrapper">
+                    <div id="canvas" class="canvas">
+                        <div class="empty-state">
+                            <i class="fas fa-plus-circle"></i>
+                            <p>Drag components here to start building</p>
+                            <small>Try dragging a Hero or Container from the sidebar</small>
+                            <div class="quick-start">
+                                <button class="btn btn-primary" onclick="loadTemplate('landing')">
+                                    <i class="fas fa-rocket"></i> Start with a Template
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Sidebar - Properties -->
+            <aside class="sidebar sidebar-right">
+                <h3><i class="fas fa-sliders-h"></i> Properties</h3>
+                <div id="properties-panel" class="properties-panel">
+                    <div class="empty-properties">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <p>Select a component to edit its properties</p>
+                        <small>Click any component on the canvas to customize it</small>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Project Modal -->
+        <div id="project-modal" class="modal">
+            <div class="modal-content">
+                <h2>Your Projects</h2>
+                <div id="projects-list" class="projects-list"></div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Upload Modal -->
+        <div id="upload-modal" class="modal">
+            <div class="modal-content">
+                <h2>Upload Image</h2>
+                <div class="upload-area" id="upload-dropzone">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop an image here</p>
+                    <small>or click to browse</small>
+                    <input type="file" id="upload-input" accept="image/*" hidden>
+                </div>
+                <div id="upload-gallery" class="upload-gallery"></div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeUploadModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Icon Picker Modal -->
+        <div id="icon-modal" class="modal">
+            <div class="modal-content">
+                <h2>Choose Icon</h2>
+                <div class="icon-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="icon-search-input" placeholder="Search icons...">
+                </div>
+                <div id="icon-grid" class="icon-grid"></div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeIconModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="loading-spinner"></div>
+            <p>Loading...</p>
+        </div>
+
+        <!-- Help Modal -->
+        <div id="help-modal" class="modal">
+            <div class="modal-content help-modal-content">
+                <h2><i class="fas fa-keyboard"></i> Keyboard Shortcuts</h2>
+                <div class="shortcuts-grid">
+                    <div class="shortcut-item">
+                        <kbd>Ctrl</kbd> + <kbd>Z</kbd>
+                        <span>Undo</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd>Ctrl</kbd> + <kbd>Y</kbd>
+                        <span>Redo</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd>Ctrl</kbd> + <kbd>S</kbd>
+                        <span>Save Project</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd>Ctrl</kbd> + <kbd>D</kbd>
+                        <span>Duplicate Component</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd>Delete</kbd> / <kbd>Backspace</kbd>
+                        <span>Delete Component</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd>Escape</kbd>
+                        <span>Deselect / Exit Preview</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd>?</kbd>
+                        <span>Show/Hide Help</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd>↑</kbd> / <kbd>↓</kbd>
+                        <span>Move Component</span>
+                    </div>
+                </div>
+                <div class="help-tips">
+                    <h3><i class="fas fa-lightbulb"></i> Pro Tips</h3>
+                    <ul>
+                        <li>Drag components into containers to nest them</li>
+                        <li>Use the device toggle to preview responsive design</li>
+                        <li>Apply animations for professional-looking transitions</li>
+                        <li>Export your site when ready to publish</li>
+                    </ul>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" onclick="closeHelpModal()">Got it!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container"></div>
+    </div>
+
+    <script src="/static/editor.js"></script>
+</body>
+</html>
