@@ -127,6 +127,8 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
 
 /* ============================================
@@ -140,6 +142,10 @@ body {
     background: var(--bg-panel);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(10px);
+    height: 64px;
+    min-height: 64px;
+    flex-shrink: 0;
+    z-index: 100;
 }
 
 .logo {
@@ -273,23 +279,33 @@ body {
     display: flex;
     flex: 1;
     overflow: hidden;
+    position: relative;
+    height: calc(100vh - 64px);
 }
 
 /* ============================================
    SIDEBARS
    ============================================ */
 .sidebar {
-    width: 300px;
     background: var(--bg-panel);
-    border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    transition: width var(--transition);
+    flex-shrink: 0;
+    height: 100%;
+}
+
+.sidebar-left {
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+    border-right: 1px solid var(--border);
 }
 
 .sidebar-right {
-    border-right: none;
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
     border-left: 1px solid var(--border);
 }
 
@@ -507,6 +523,8 @@ body {
     flex-direction: column;
     background: var(--bg-dark);
     position: relative;
+    overflow: hidden;
+    min-width: 0;
 }
 
 .canvas-header {
@@ -581,6 +599,7 @@ body {
         radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.03) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(34, 197, 94, 0.03) 0%, transparent 50%),
         var(--bg-dark);
+    min-height: 0;
 }
 
 .canvas {
@@ -593,6 +612,7 @@ body {
     position: relative;
     padding: 40px;
     transition: all var(--transition);
+    flex-shrink: 0;
 }
 
 .canvas.tablet {
@@ -2272,13 +2292,47 @@ body.preview-mode .canvas {
 /* ============================================
    RESPONSIVE
    ============================================ */
-@media (max-width: 1200px) {
-    .sidebar {
+@media (max-width: 1400px) {
+    .sidebar-left {
         width: 260px;
+        min-width: 260px;
+        max-width: 260px;
+    }
+    
+    .sidebar-right {
+        width: 280px;
+        min-width: 280px;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .sidebar-left {
+        width: 240px;
+        min-width: 240px;
+        max-width: 240px;
+    }
+    
+    .sidebar-right {
+        width: 260px;
+        min-width: 260px;
+        max-width: 260px;
     }
     
     .component-list {
         grid-template-columns: 1fr;
+    }
+    
+    .canvas-wrapper {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar-right {
+        width: 240px;
+        min-width: 240px;
+        max-width: 240px;
     }
 }
 
@@ -2287,10 +2341,16 @@ body.preview-mode .canvas {
         flex-direction: column;
     }
     
-    .sidebar {
+    .sidebar-left,
+    .sidebar-right {
         width: 100%;
+        min-width: 100%;
+        max-width: 100%;
         height: auto;
-        max-height: 300px;
+        max-height: 250px;
+    }
+    
+    .sidebar-left {
         border-right: none;
         border-bottom: 1px solid var(--border);
     }
@@ -2314,6 +2374,11 @@ body.preview-mode .canvas {
     
     .shortcuts-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .canvas {
+        min-height: 400px;
+        padding: 20px;
     }
 }
 

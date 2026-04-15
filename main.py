@@ -19,7 +19,7 @@ from pathlib import Path
 # Get the directory where this script is located
 BASE_DIR = Path(__file__).parent.absolute()
 
-app = FastAPI(title="WYSIWYG Website Builder")
+app = FastAPI(title="Pop Locate")
 
 # Mount static files using absolute paths
 app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
