@@ -281,6 +281,7 @@ body {
     overflow: hidden;
     position: relative;
     height: calc(100vh - 64px);
+    width: 100%;
 }
 
 /* ============================================
@@ -525,6 +526,7 @@ body {
     position: relative;
     overflow: hidden;
     min-width: 0;
+    max-width: calc(100vw - 580px);
 }
 
 .canvas-header {
@@ -590,12 +592,12 @@ body {
 
 .canvas-wrapper {
     flex: 1;
-    padding: 40px;
+    padding: 20px;
     overflow: auto;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    background: 
+    background:
         radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.03) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(34, 197, 94, 0.03) 0%, transparent 50%),
         var(--bg-dark);
@@ -604,15 +606,16 @@ body {
 
 .canvas {
     width: 100%;
-    max-width: 1200px;
-    min-height: 800px;
+    max-width: min(1200px, calc(100vw - 640px));
+    min-height: 600px;
     background: var(--canvas-bg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
     position: relative;
-    padding: 40px;
+    padding: 30px;
     transition: all var(--transition);
     flex-shrink: 0;
+    margin: 0 auto;
 }
 
 .canvas.tablet {
